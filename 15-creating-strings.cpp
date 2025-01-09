@@ -26,9 +26,9 @@ void solve() {
     vector<string> op;
     int n = s.size();
 
-    sort(s.begin(), s.end()); // Sorting ensures duplicates are adjacent
+    sort(s.begin(), s.end()); 
     func(0, n, s, op);
-
+    sort(op.begin(), op.end());
     cout << op.size() << endl;
     for (auto& it : op) {
         cout << it << endl;
