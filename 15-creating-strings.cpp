@@ -27,7 +27,6 @@ void solve() {
 
     func(0, n, s, op);
     sort(op.begin(), op.end());
-    
     cout << op.size() << endl;
 
     for (auto it: op) {
