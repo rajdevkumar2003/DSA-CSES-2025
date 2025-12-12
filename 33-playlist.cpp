@@ -1,54 +1,34 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool check(int k, long long arr[], int n){
-    
-	unordered_map<long long,int>mpp;
-	
-	int l=0,r=0;
-	
-	while(r<n){
-	    while(r-l+1<k){
-	        mpp[arr[r]]++;
-	        r++;
-	    }
-	    
-	    mpp[arr[r]]++;
-	    if(mpp.size()==k)return true;
-	    mpp[arr[l]]--;
-	    if(mpp[arr[l]]==0)mpp.erase(mpp[arr[l]]);
-	    
-	    r++;
-	    l++;
-	}
-	
-	return false;
-}
 
 int main() {
-	int n;
+	long long n;
 	cin>>n;
 	long long arr[n];
 	
-	for(int i=0;i<n;i++){
+	for(long long i=0;i<n;i++){
 	    cin>>arr[i];
 	}
 	
-	int ans=-1;
-	int low=1,high=n;
-	while(low<high){
-	    int mid=(low+high)/2;
-	    
-	    if(check(mid,arr,n)){
-	        ans=mid;
-	        low=mid+1;
-	    }
-	    else high=mid-1;
+	long long ans=0;
+	unordered_map<long long,long long>mpp;
+	
+	long long l=0,r=0;
+	
+	while(r<n){
+	    mpp[arr[r]]++;
+
+		if(l<n&&mpp.size()<r-l+1){
+			mpp[arr[l]]--;
+			if(mpp[arr[l]]==0)mpp.erase(arr[l]);
+			l++;
+		}
+		if(mpp.size()==r-l+1)ans=max(ans,r-l+1);
+		r++;
 	}
 	
-	cout<<ans<<endl;
+	cout<<ans;
 	
 	return 0;
-	
-
 }
